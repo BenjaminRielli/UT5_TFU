@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 
 const app = express();
-app.use(express.json()); // Middleware to parse JSON requests
+// Middleware
+app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
     res.send('<h1>Hello, Express.js Server!</h1>');
