@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 
 import adminRouter from './routes/administrador';
+import atletaRouter from './routes/atleta';
 
 const app = express();
 // Middleware
@@ -10,7 +11,9 @@ app.get('/', (req: Request, res: Response) => {
     res.send('<h1>Hello, Express.js Server!</h1>');
 });
 
+// routes
 app.use('/administrador', adminRouter);
+app.use('/atleta', atletaRouter);
 
 const port = process.env.PORT || 3000;
 
