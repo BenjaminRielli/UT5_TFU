@@ -1,4 +1,5 @@
 import { Categoria, CATEGORIAS } from "../models/categoria";
+import { Evento } from "../models/evento";
 import DisciplinaController from "./disciplinaController";
 
 class CategoriaController {
@@ -40,6 +41,24 @@ class CategoriaController {
         }
         return false;
     }
+
+    /**
+     * 
+     * @param id 
+     * @returns Array de eventos de la categoria especificada; vacío si no existen eventos o la categoria no existe.
+     */
+    static verEventosCategoria(id: number): Evento[] {
+        const categoria = CategoriaController.getById(id);
+        if (categoria != null) {
+            return categoria.eventos;
+        } else {
+            console.log(`Error: no se pudo encontrar la Categoria con id= '${id}'`);
+            return [];
+        }
+    }
+
+
+    
 
 }
 
