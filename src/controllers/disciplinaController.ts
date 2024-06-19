@@ -4,6 +4,11 @@ import { Disciplina, DISCIPLINAS } from "../models/disciplina";
 class DisciplinaController {
     
     disciplinas: Disciplina[] = DISCIPLINAS;
+    static id: number = 0;
+
+    private static generateId(): number {
+        return this.id++;
+    }
     
     static get() : Disciplina[] {
         return DISCIPLINAS;
@@ -44,18 +49,18 @@ class DisciplinaController {
         }
         return false;
     }
+   
     
     /**
     * 
-    * @param number 
+    * @param idDisciplina 
     * @param nombreCategoria 
     */
     static registrarCategoria(idDisciplina: number, nombreCategoria: string): Categoria | null{
         const disciplina: Disciplina | undefined = DisciplinaController.getById(idDisciplina);
-        if(disciplina != null){
-            const cantCategorias = disciplina.categorias.length;
+        if(disciplina != null){            
             const categoriaNueva: Categoria = {
-                id: cantCategorias + 1,
+                id: this.generateId(),
                 idDisciplina: idDisciplina,
                 nombre: nombreCategoria,
                 eventos: []  

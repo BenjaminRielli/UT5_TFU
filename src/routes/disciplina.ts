@@ -65,4 +65,19 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.patch('/categoria', async (req, res) => {
+    try {
+        const id: number = req.body.id;
+        const nombre = req.body.nombre
+        const categoria = DisciplinaController.registrarCategoria(id, nombre);
+        if(categoria != null){
+            res.status(200).json({ message: 'Categoria agregada correctamente' });
+        }else{
+            res.status(404).json({ message: `ERROR al agregar la categoria` });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal Server Error'});
+    }
+})
+
 export default router;

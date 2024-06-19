@@ -27,15 +27,16 @@ class CategoriaController {
     * @param id 
     * @returns True si fue eliminada correctamente; False si no fue eliminada o no existe.
     */
-    static eliminarCategoria(id: number): boolean {
-        const cantidadInicial= CATEGORIAS.length;
+    static eliminarCategoria(id: number): boolean {        
         const categoria = CategoriaController.getById(id);
         if(categoria != null){
             const disciplina = DisciplinaController.getById(categoria.idDisciplina);
             if(disciplina != null){
-                disciplina.categorias.filter(u => u.id !== id);
-                const result = CATEGORIAS.filter(u => u.id !== id);
-                return result.length < cantidadInicial;
+                const index1 = disciplina.categorias.findIndex(d => d.id === id);
+                const index2 = CATEGORIAS.findIndex(d => d.id === id);
+                disciplina.categorias.splice(index1, 1);
+                CATEGORIAS.splice(index2, 1);
+                return true;
             }
         }
         return false;
