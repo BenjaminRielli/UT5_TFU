@@ -1,5 +1,4 @@
-import { Evento } from "./evento";
-
+import { Juez } from "./juez";
 
 export interface Categoria {
     id: number;
@@ -7,5 +6,13 @@ export interface Categoria {
     nombre: string;
     eventos: Evento[];
 }
+
+
+export interface Evento {
+    id: number;
+    fecha: Date;
+    jueces: Juez[];
+}
+
 
 export const CATEGORIAS: Categoria[] = [];
