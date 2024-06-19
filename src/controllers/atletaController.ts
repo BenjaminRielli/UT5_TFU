@@ -63,6 +63,7 @@ class AtletaController {
         if(atleta != null){
             if (atleta.contraseña === contraseña) {
                 console.log(`Inicio de sesion aprobado. ¡Bienvenido ${atleta.nombre}!`);
+                // navegar usuario hacia menu de atletas + otorgar permisos de atleta
                 return true;
             }
             console.log('Error: contraseña incorrecta. Por favor vuelva a intentarlo.');

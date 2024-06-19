@@ -83,6 +83,7 @@ class JuezController {
         if(juez != null){
             if (juez.contraseña === contraseña) {
                 console.log(`Inicio de sesion aprobado. ¡Bienvenido ${juez.nombre}!`);
+                // navegar usuario hacia menu de jueces + otorgar permisos de juez
                 return true;
             }
             console.log('Error: contraseña incorrecta. Por favor vuelva a intentarlo.');

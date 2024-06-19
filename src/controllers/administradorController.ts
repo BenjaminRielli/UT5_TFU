@@ -1,16 +1,13 @@
 import { Administrador, ADMINISTRADORES } from "../models/administrador";
-import { Atleta, ATLETAS } from "../models/atleta";
+import { Atleta } from "../models/atleta";
 import { Equipo } from "../models/equipo";
-import { Juez, JUECES } from "../models/juez";
-import { Usuario, USUARIOS } from "../models/usuario";
+import { Juez } from "../models/juez";
+import { Usuario } from "../models/usuario";
 import AtletaController from "./atletaController";
 import JuezController from "./juezController";
 import UsuarioController from "./usuarioController";
 
 class AdministradorController {
-    
-    atletas: Atleta[] = ATLETAS;
-    jueces: Juez[] = JUECES;
     
     static get() : Administrador[] {
         return ADMINISTRADORES;
@@ -19,7 +16,7 @@ class AdministradorController {
     /**
     * 
     * @param id 
-    * @returns instancia de usuario especificada; null si no existe.
+    * @returns instancia de administrador especificada; null si no existe.
     */
     static getById(id: string): Administrador | undefined {
         const u = ADMINISTRADORES.find(u => u.id==id);
@@ -64,6 +61,7 @@ class AdministradorController {
         if(admin != null){
             if (admin.contraseña === contraseña) {
                 console.log(`Inicio de sesion aprobado. ¡Bienvenido ${admin.nombre}!`);
+                // navegar usuario hacia menu de admins + otorgar permisos de admin
                 return true;
             }
             console.log('Error: contraseña incorrecta. Por favor vuelva a intentarlo.');
