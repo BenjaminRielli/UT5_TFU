@@ -1,7 +1,14 @@
 import express from 'express';
+
+import AtletaController from '../controllers/atletaController';
+import { Atleta } from '../models/atleta';
+import { Disciplina } from '../models/disciplina';
+import DisciplinaController from '../controllers/disciplinaController';
 import CategoriaController from '../controllers/categoriaController';
+
 import { Categoria, Evento } from '../models/categoria';
 import { Juez } from '../models/juez';
+
 
 const router = express.Router();
 
@@ -9,13 +16,15 @@ const router = express.Router();
 router.get('/', (req, res) => {
     try {
         const categorias: Categoria[] = CategoriaController.get();
-        res.status(200).json(categorias);
+
+        res.status(200)
+            .json(categorias);
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Internal Server Error', details: 'Failed to retrieve categorias data.' });
+        res.status(500)
+            .json({ success: false, message: 'Internal Server Error', details: 'Failed to retrieve categorias data.' });
     }
 });
 
-/* GET categoria by id */
 router.get('/:id', (req, res) => {
     const { id } = req.params;
     try {
@@ -31,21 +40,35 @@ router.get('/:id', (req, res) => {
     }
 });
 
-/* DELETE categoria by id */
-router.delete('/:id', (req, res) => {
-    const { id } = req.params;
+
+router.delete('/:id', async (req, res) => {
     try {
-        const idInt = parseInt(id);
-        const eliminado = CategoriaController.eliminarCategoria(idInt);
-        if (eliminado) {
-            res.status(200).json({ message: 'Categoria eliminada correctamente' });
-        } else {
-            res.status(404).json({ message: `categoria '${id}' not found.` });
+        const idInt = parseInt(req.params.id);
+        const eliminada = CategoriaController.eliminarCategoria(idInt);
+        if(eliminada == true){
+            res.status(200).json({ message: 'Categoria eliminada correctamente de todas las disciplinas' });
+        }else{
+            res.status(404).json({ message: `categoria '${idInt}' not found.` });
         }
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Internal Server Error', details: `Failed to delete categoria '${id}' data.` });
+        res.status(500).json({ success: false, message: 'Internal Server Error', details: `Failed to retrieve categoria '${req.params.id}' data.` });
     }
 });
+
+router.patch('/categoria', async (req, res) => {
+    try {
+        const id: number = req.body.id;
+        const nombre = req.body.nombre
+        const categoria = DisciplinaController.registrarCategoria(id, nombre);
+        if(categoria != null){
+            res.status(200).json({ message: 'Categoria agregada correctamente' });
+        }else{
+            res.status(404).json({ message: `ERROR al agregar la categoria` });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal Server Error'});
+    }
+})
 
 /* GET eventos by categoria id */
 router.get('/:id/eventos', (req, res) => {
@@ -134,3 +157,4 @@ router.delete('/:id/eventos/:idEvento/jueces/:idJuez', (req, res) => {
 });
 
 export default router;
+
