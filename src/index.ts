@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 
 import adminRouter from './routes/administrador';
 import atletaRouter from './routes/atleta';
+import sancionesRoutes from './routes/sanciones';
 
 const app = express();
 // Middleware
@@ -14,6 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 // routes
 app.use('/administrador', adminRouter);
 app.use('/atleta', atletaRouter);
+app.use('/sanciones', sancionesRoutes);
 
 const port = process.env.PORT || 3000;
 
