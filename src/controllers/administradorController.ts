@@ -11,7 +11,7 @@ class AdministradorController {
     atletas: Atleta[] = ATLETAS;
     jueces: Juez[] = JUECES;
     
-    get() : Administrador[] {
+    static get() : Administrador[] {
         return ADMINISTRADORES;
     }
     
@@ -20,7 +20,7 @@ class AdministradorController {
     * @param id 
     * @returns instancia de usuario especificada; null si no existe.
     */
-    getById(id: string): Administrador | undefined {
+    static getById(id: string): Administrador | undefined {
         const u = ADMINISTRADORES.find(u => u.id==id);
         if(u == null){
             console.log(`Error: no se pudo encontrar al administrador con id= '${id}'`);
@@ -91,7 +91,7 @@ class AdministradorController {
     * @param id 
     * @param contraseña 
     */
-    login(id: string, contraseña: string): boolean {
+    static login(id: string, contraseña: string): boolean {
         const admin : Administrador | null = this.getById(id)!;
         if(admin != null){
             if (admin.contraseña === contraseña) {

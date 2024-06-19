@@ -1,4 +1,7 @@
 import { Usuario, USUARIOS } from "../models/usuario";
+import AdministradorController from "./administradorController";
+import AtletaController from "./atletaController";
+import JuezController from "./juezController";
 
 class UsuarioController {
     
@@ -62,12 +65,17 @@ class UsuarioController {
     static login(id: string, contraseña: string, tipoUsuario: string): boolean {
         const usuario : Usuario | null = this.getById(id)!;
         if(usuario != null){
-            if(tipoUsuario === 'atleta'){
-                AtletaControlador.login(id, contraseña);
+            if(tipoUsuario.toLocaleLowerCase() === 'atleta'){
+                return AtletaController.login(id, contraseña);
+            } else if(tipoUsuario.toLocaleLowerCase() === 'juez'){
+                return JuezController.login(id, contraseña);
+            } else if(tipoUsuario.toLocaleLowerCase() === 'administrador'){
+                return AdministradorController.login(id, contraseña);
             }
-            console.log('Error: contraseña incorrecta. Por favor vuelva a intentarlo.');
+            console.log(`Error: el tipo de usuario '${tipoUsuario}' no es valido. Por favor vuelva a intentarlo.`);
             return false;
         }
+        console.log(`Error: no se pudo encontrar al usuario con id= '${id}'. Por favor vuelva a intentarlo.`);
         return false;
     }
 }
