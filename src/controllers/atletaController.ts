@@ -71,6 +71,8 @@ class AtletaController {
         }
         return false;
     }
+
+
 }
 
 export = AtletaController;
