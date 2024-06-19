@@ -25,6 +25,33 @@ class AtletaController {
         }
         return u;
     }
+
+    static add(id:string,  fechaNacimiento: Date, sexo: string, nacionalidad: string): Atleta | null {
+        const usuario: Usuario | undefined = UsuarioController.getById(id);
+        if(usuario != null) {
+            const atleta : Atleta = {
+                id: id,
+                nombre: usuario.nombre,
+                apellido: usuario.apellido,
+                email: usuario.email,
+                telefono: usuario.telefono,
+                contraseña: usuario.contraseña,
+                fechaNacimiento: fechaNacimiento,
+                sexo: sexo,
+                nacionalidad,
+                equipos: []
+            }
+            ATLETAS.push(atleta);
+            return atleta;
+        }
+        return null;
+    }
+
+    static eliminarAtleta(id: string): boolean {
+        const cantidadInicial= ATLETAS.length;
+        const result = ATLETAS.filter(u => u.id !== id);
+        return result.length < cantidadInicial;
+    }
     
     /**
     * 

@@ -28,6 +28,24 @@ class JuezController {
         }
         return u;
     }
+
+    static add(id: string, nacionalidad: string){
+        const usuario: Usuario | undefined = UsuarioController.getById(id);
+        if(usuario != null) {
+            const juez : Juez = {
+                id: id,
+                nombre: usuario.nombre,
+                apellido: usuario.apellido,
+                email: usuario.email,
+                telefono: usuario.telefono,
+                contraseña: usuario.contraseña,
+                nacionalidad: nacionalidad
+            }
+            JUECES.push(juez);
+            return juez;
+        }
+        return null;
+    }
     
     /**
      * 
