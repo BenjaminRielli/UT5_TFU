@@ -1,7 +1,15 @@
 import { Usuario } from "./usuario";
 
-export interface Juez extends Usuario {
-    nacionalidad: string;
+export class Juez extends Usuario {
+    private nacionalidad: string = "";
+
+    public getNacionalidad(){
+        return this.nacionalidad;
+    }
+
+    public setNacionalidad(nacionalidad: string){
+        this.nacionalidad = nacionalidad
+    }
 }
 
 export const JUECES: Juez[] = [];
