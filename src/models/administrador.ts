@@ -1,8 +1,5 @@
 import { Usuario } from "./usuario";
 
-export interface Administrador extends Usuario {  
-}
+export class Administrador extends Usuario { }
 
-export const ADMINISTRADORES: Administrador[] = [
-    
-];
+export const ADMINISTRADORES: Administrador[] = [];
