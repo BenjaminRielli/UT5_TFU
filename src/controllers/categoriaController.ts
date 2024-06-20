@@ -1,4 +1,5 @@
-import { Categoria, CATEGORIAS, Evento } from "../models/categoria";
+import { Categoria, CATEGORIAS } from "../models/categoria";
+import { Evento } from "../models/evento";
 import DisciplinaController from "./disciplinaController";
 import { Juez } from "../models/juez";
 
@@ -28,13 +29,13 @@ class CategoriaController {
     * @returns True si fue eliminada correctamente; False si no fue eliminada o no existe.
     */
 
-    static eliminarCategoria(id: number): boolean {        
+    static eliminarCategoria(id: number): boolean {
 
         const categoria = CategoriaController.getById(id);
         if (categoria != null) {
             const disciplina = DisciplinaController.getById(categoria.idDisciplina);
 
-            if(disciplina != null){
+            if (disciplina != null) {
                 const index1 = disciplina.categorias.findIndex(d => d.id === id);
                 const index2 = CATEGORIAS.findIndex(d => d.id === id);
                 disciplina.categorias.splice(index1, 1);
@@ -75,7 +76,8 @@ class CategoriaController {
                 const nuevoEvento: Evento = {
                     id: id,
                     fecha: fecha,
-                    jueces: []
+                    jueces: [],
+                    idCategoria: idCategoria
                 };
                 categoria.eventos.push(nuevoEvento);
                 return nuevoEvento;

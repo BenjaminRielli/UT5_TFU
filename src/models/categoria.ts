@@ -1,18 +1,17 @@
-import { Juez } from "./juez";
+import { Evento } from "./evento";
 
-export interface Categoria {
+export class Categoria {
     id: number;
     idDisciplina: number;
     nombre: string;
     eventos: Evento[];
+
+    constructor(id: number, idDisciplina: number, nombre: string) {
+        this.id = id;
+        this.idDisciplina = idDisciplina;
+        this.nombre = nombre;
+        this.eventos = [];
+    }
 }
-
-
-export interface Evento {
-    id: number;
-    fecha: Date;
-    jueces: Juez[];
-}
-
 
 export const CATEGORIAS: Categoria[] = [];

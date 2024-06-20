@@ -1,5 +1,5 @@
 import { Atleta, ATLETAS } from "../models/atleta";
-import { Usuario, USUARIOS } from "../models/usuario";
+import { Usuario } from "../models/usuario";
 import UsuarioController from "./usuarioController";
 
 class AtletaController {
