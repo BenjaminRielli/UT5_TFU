@@ -1,4 +1,5 @@
-import { Administrador, ADMINISTRADORES } from "../models/administrador";
+import { Administrador } from "../models/administrador";
+import { ADMINISTRADORES } from "../models/database";
 import { Atleta } from "../models/atleta";
 import { Juez } from "../models/juez";
 import AtletaController from "./atletaController";

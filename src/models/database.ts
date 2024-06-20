@@ -1,0 +1,19 @@
+import { Administrador } from "./administrador";
+import { Atleta } from "./atleta";
+import { Categoria } from "./categoria";
+import { Disciplina } from "./disciplina";
+import { Equipo } from "./equipo";
+import { Evento } from "./evento";
+import { Juez } from "./juez";
+import { Sancion } from "./sanciones";
+import { Usuario } from "./usuario";
+
+export const ADMINISTRADORES: Administrador[] = [];
+export const ATLETAS: Atleta[] = [];
+export const CATEGORIAS: Categoria[] = [];
+export const DISCIPLINAS: Disciplina[] = [];
+export const EQUIPOS: Equipo[] = [];
+export const EVENTOS: Evento[] = [];
+export const JUECES: Juez[] = [];
+export const SANCIONES: Sancion[] = [];
+export const USUARIOS: Usuario[] = [];

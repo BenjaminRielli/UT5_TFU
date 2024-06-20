@@ -18,5 +18,3 @@ export class Atleta extends Usuario {
         this.sanciones = sanciones;
     }
 }
-
-export const ATLETAS: Atleta[] = [];

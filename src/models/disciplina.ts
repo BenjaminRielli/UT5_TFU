@@ -11,5 +11,3 @@ export class Disciplina {
         this.categorias = [];
     }
 }
-
-export const DISCIPLINAS: Disciplina[] = [];

@@ -15,5 +15,3 @@ export class Usuario {
         this.contraseña = contraseña;
     }
 }
-
-export const USUARIOS: Usuario[] = [];

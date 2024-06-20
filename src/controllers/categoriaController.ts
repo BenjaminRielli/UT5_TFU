@@ -1,4 +1,5 @@
-import { Categoria, CATEGORIAS } from "../models/categoria";
+import { Categoria } from "../models/categoria";
+import { CATEGORIAS } from "../models/database";
 import { Evento } from "../models/evento";
 import DisciplinaController from "./disciplinaController";
 import { Juez } from "../models/juez";

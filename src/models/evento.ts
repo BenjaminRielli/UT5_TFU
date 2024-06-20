@@ -13,5 +13,3 @@ export class Evento {
         this.idCategoria = idCategoria;
     }
 }
-
-export const EVENTOS: Evento[] = [];
