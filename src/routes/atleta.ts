@@ -17,6 +17,18 @@ router.get('/', (req, res) => {
     }
 });
 
+router.post('/', (req, res) => {
+    try {
+        const { id, fechaNacimiento, sexo, nacionalidad } = req.body;        
+        const atletas: Atleta | null = AtletaController.add(id, fechaNacimiento, sexo, nacionalidad);
+        res.status(200)
+            .json(atletas);
+    } catch (error) {
+        res.status(500)
+            .json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
 /* GET atleta by id */
 router.get('/:id', (req, res) => {
     const { id } = req.params;
