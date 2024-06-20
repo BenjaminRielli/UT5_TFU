@@ -6,8 +6,9 @@ import { Disciplina } from '../models/disciplina';
 import DisciplinaController from '../controllers/disciplinaController';
 import CategoriaController from '../controllers/categoriaController';
 
-import { Categoria, Evento } from '../models/categoria';
+import { Categoria } from '../models/categoria';
 import { Juez } from '../models/juez';
+import { Evento } from '../models/evento';
 
 
 const router = express.Router();

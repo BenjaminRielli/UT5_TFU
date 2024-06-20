@@ -5,6 +5,7 @@ import atletaRouter from './routes/atleta';
 import sancionesRoutes from './routes/sanciones';
 import disciplinaRouter from './routes/disciplina';
 import categoriaRouter from './routes/categoria';
+import usuarioRouter from './routes/usuario';
 
 const app = express();
 // Middleware
@@ -16,6 +17,7 @@ app.get('/', (req: Request, res: Response) => {
 
 // routes
 app.use('/administrador', adminRouter);
+app.use('/usuario', usuarioRouter);
 app.use('/atleta', atletaRouter);
 app.use('/sanciones', sancionesRoutes);
 app.use('/disciplina', disciplinaRouter);
