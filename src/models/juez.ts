@@ -1,14 +1,11 @@
 import { Usuario } from "./usuario";
 
 export class Juez extends Usuario {
-    private nacionalidad: string = "";
+    nacionalidad: string;
 
-    public getNacionalidad(){
-        return this.nacionalidad;
-    }
-
-    public setNacionalidad(nacionalidad: string){
-        this.nacionalidad = nacionalidad
+    constructor(id: string, nombre: string, apellido: string, email: string, telefono: string, contraseña: string, nacionalidad: string) {
+        super(id, nombre, apellido, email, telefono, contraseña);
+        this.nacionalidad = nacionalidad;
     }
 }
 

@@ -1,21 +1,17 @@
-
-import { EventoGrupal } from "./eventoGrupal";
-import { EventoIndividual } from "./eventoIndividual";
 import { Juez } from "./juez";
 
 export class Evento {
+    id: number;
+    fecha: Date;
+    jueces: Juez[];
+    idCategoria: number;
 
-
-    
-    private id: number;
-    private fecha: Date;
-    private jueces: Array<Juez>;
-
-   constructor(id: number, fecha: Date, jueces: Array<Juez>){
+    constructor(id: number, fecha: Date, idCategoria: number) {
         this.id = id;
         this.fecha = fecha;
-        this.jueces = jueces;
-    } 
+        this.jueces = [];
+        this.idCategoria = idCategoria;
+    }
 
     public agregarJuez(juez:Juez){
         try {
@@ -49,27 +45,6 @@ export class Evento {
         }
         
     }
-
-    public getFecha(){
-        return this.fecha;
-    }
-    
-    // Solo getter, id no va a tener modificador
-    public getId(){
-        return this.id;
-    }
-
-    public setFecha(fecha: Date){
-        this.fecha = fecha;
-    }
-
-    public getJueces(){
-        return this.jueces;
-    }
-
-    
-
-   
 }
 
-export const EVENTOS: any[] = [];
+export const EVENTOS: Evento[] = [];

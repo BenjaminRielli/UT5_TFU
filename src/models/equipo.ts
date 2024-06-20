@@ -1,21 +1,18 @@
 import { Atleta } from "./atleta";
+import { Sancion } from "./sanciones";
 
-export class Equipo{
-   private atletas: Atleta[] = [];
+export class Equipo {
+    id: string;
+    nacionalidad: string;
+    atletas: Atleta[];
+    sanciones: Sancion[];
 
-    constructor(id: number, atletas: Atleta[]){
-        this.atletas = atletas;
+    constructor(id: string, nacionalidad: string, atletas: Atleta[], sanciones: Sancion[]) {
         this.id = id;
+        this.nacionalidad = nacionalidad;
+        this.atletas = atletas;
+        this.sanciones = sanciones;
     }
-    get id(): number  {
-        return this.id;
-    }
-
-    private set id(value:  number) {
-        this.id = value;
-    }
-
-
 }
 
 export const EQUIPOS: Equipo[] = [];
