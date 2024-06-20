@@ -3,6 +3,8 @@ import express, { Request, Response } from 'express';
 import adminRouter from './routes/administrador';
 import atletaRouter from './routes/atleta';
 import sancionesRoutes from './routes/sanciones';
+import disciplinaRouter from './routes/disciplina';
+import categoriaRouter from './routes/categoria';
 
 const app = express();
 // Middleware
@@ -16,6 +18,8 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/administrador', adminRouter);
 app.use('/atleta', atletaRouter);
 app.use('/sanciones', sancionesRoutes);
+app.use('/disciplina', disciplinaRouter);
+app.use('/categoria', categoriaRouter);
 
 const port = process.env.PORT || 3000;
 
