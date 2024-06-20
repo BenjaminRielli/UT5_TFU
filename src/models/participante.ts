@@ -1,3 +1,6 @@
+import { Resultado } from "./resultado";
+
 export interface Participante{
-    id: string | number;
+   id: number | string;
+   resultado: Resultado;
 }
