@@ -1,13 +1,7 @@
 import { Evento, EVENTOS } from "../models/evento";
-import { EventoGrupal, EVENTOSGRUPALES } from "../models/eventoGrupal";
-import { EventoIndividual, EVENTOSINDIVIDUALES } from "../models/eventoIndividual";
-import { Atleta } from "../models/atleta";
+import { EventoGrupal } from "../models/eventoGrupal";
 import { Equipo, EQUIPOS } from "../models/equipo";
 import { JUECES, Juez } from "../models/juez";
-import { Usuario } from "../models/usuario";
-import AtletaController from "./atletaController";
-import JuezController from "./juezController";
-import UsuarioController from "./usuarioController";
 import { Resultado } from "../models/resultado";
 import { ResultadoAtletismo } from "../models/resultadoAtletismo";
 import { Puntaje } from "../models/puntaje";
@@ -18,7 +12,7 @@ class EventoController {
 
 
     // constructor(id: number, fecha: Date, jueces: Array<Juez>, participantes: Array<Equipo>){
-    static crearEventoGrupal(idJueces: string[], idEquipos: number[], categoriaEvento: string) {
+    static crearEventoGrupal(idJueces: string[], idEquipos: number[]) {
 
 
         try {
@@ -49,6 +43,9 @@ class EventoController {
 
 
     } 
+
+
+
 
     static getEventos(): Evento[] {
         let result: Array<Evento> = EVENTOS.map(evento => ({
@@ -120,17 +117,14 @@ class EventoController {
     }
 
 
-    static agregarParticapenteEGrupal(participante: Equipo , idEvento: number) {
+    static agregarParticipante(participante: Equipo , idEvento: number) {
         try {
             const evento = EVENTOS.find(evento => evento.getId() === idEvento);
             if (evento ==  undefined) {
                 throw new Error("No existe dicho evento");
             }
-
-            let antes = evento.participantes.length;
-            evento.participantes = evento.participantes.filter((p: Equipo | Atleta) => p.id != participante.id);
-            if (evento.jueces.length <= antes) {
-                throw new Error("No se pudo agregar el juez")
+            if (!evento.agregarParticipante(participante)) {
+                throw new Error("No se pudo agregar al equipo")
             }
             return true;
         } catch (error) {
@@ -140,7 +134,25 @@ class EventoController {
         }
     }
 
-    static registrarResultadosEvento(idEvento: number, puntajes: Array<Puntaje>, categoriaEvento: string){
+    static quitarParticipante(equipo: Equipo , idEvento: number) {
+        try {
+            const evento = EVENTOS.find(evento => evento.getId() === idEvento);
+            if (evento ==  undefined) {
+                throw new Error("No existe dicho evento");
+            }
+
+            if (!evento.quitarParticipante(equipo.id)) {
+                throw new Error("No se pudo quitar el equipo, no existe")
+            }
+            return true;
+        } catch (error) {
+            console.log(error)
+            return false;
+
+        }
+    }
+
+    static calificarAtleta(idEvento: number, idAtleta: string, puntajes: Array<Puntaje>, categoriaEvento: string){
         
         try {
             let newResultado = this.posiblesResultados.get(categoriaEvento.toLowerCase());
@@ -152,23 +164,40 @@ class EventoController {
             if (evento ==  undefined) {
                 throw new Error("No existe dicho evento");
             }
+
+            // Caliifcamos al atleta
+            evento.setResultado(puntajes, newResultado, idAtleta);
+            return evento.getResultadoAtleta(idAtleta);
             
         } catch (error) {
             console.log(error)
+            return false;
             
         }
-        
-        
-
-
     }
 
-    static calificarAtleta(){
 
-    }
+    static calificarEquipo(idEvento: number, idEquipo: string, puntajes: Array<Puntaje>, categoriaEvento: string){
+        try {
+            let newResultado = this.posiblesResultados.get(categoriaEvento.toLowerCase());
+            if (newResultado == null ) {
+                return null;
+            }
 
-    static calificarEquipo(){
+            const evento = EVENTOS.find(evento => evento.getId() === idEvento);
+            if (evento ==  undefined) {
+                throw new Error("No existe dicho evento");
+            }
 
+            // Caliifcamos al equipo
+            evento.setResultado(puntajes, newResultado, idEquipo);
+            return evento.getResultadoEquipo(idEquipo);
+            
+        } catch (error) {
+            console.log(error)
+            return false;
+            
+        }
     }
 
 }

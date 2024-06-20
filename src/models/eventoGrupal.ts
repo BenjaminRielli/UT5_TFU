@@ -40,8 +40,43 @@ export class EventoGrupal extends Evento {
 
     }
 
-    public setParticipante(equipo: Equipo){
-        this.participantes.push(equipo);
+    public agregarParticipante(equipo: Equipo){
+        try {
+
+            let antes = this.participantes.length;
+            for(let i = 0; i < this.participantes.length; i++){
+                if(equipo.id == this.participantes[i].id){
+                    return false;
+                }
+            }
+            
+            // Legamos acá, no existe
+            let ahora = this.participantes.length;
+            this.participantes.push(equipo);
+            
+            return antes < ahora;
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+        
+    }
+
+    public quitarParticipante(equipo: Equipo){
+        try {
+            let antes = this.participantes.length
+            this.participantes = this.participantes.filter((e) => e.id != equipo.id);
+            let ahora = this.participantes.length
+
+            return antes > ahora;
+        } catch (error) {
+            console.log(error)
+            return false;
+        }
+    }
+
+    public getParticipantes(){
+        return this.participantes;
     }
     
 }

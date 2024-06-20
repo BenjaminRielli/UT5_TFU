@@ -42,7 +42,7 @@ export class Evento {
             this.jueces = this.jueces.filter((juezExistente) => juezExistente.id != juez.id);
             let ahora = this.jueces.length
 
-            return antes < ahora;
+            return antes > ahora;
         } catch (error) {
             console.log(error)
             return false;
