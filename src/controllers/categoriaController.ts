@@ -3,6 +3,9 @@ import { CATEGORIAS } from "../models/database";
 import { Evento } from "../models/evento";
 import DisciplinaController from "./disciplinaController";
 import { Juez } from "../models/juez";
+import { Atleta } from "../models/atleta";
+import { Equipo } from "../models/equipo";
+import { Participante } from "../models/participante";
 
 class CategoriaController {
     categorias: Categoria[] = CATEGORIAS;
@@ -74,12 +77,11 @@ class CategoriaController {
         if (categoria != null) {
             const eventoExistente = categoria.eventos.find(e => e.id === id);
             if (eventoExistente == null) {
-                const nuevoEvento: Evento = {
-                    id: id,
-                    fecha: fecha,
-                    jueces: [],
-                    idCategoria: idCategoria
-                };
+                const nuevoEvento: Evento = new Evento(
+                    id,
+                    fecha,
+                    idCategoria
+                );
                 categoria.eventos.push(nuevoEvento);
                 return nuevoEvento;
             }
@@ -144,6 +146,52 @@ class CategoriaController {
             }
         }
         return false;
+    }
+
+
+
+    static agregarParticipante(idCategoria: number, participante: Equipo | Atleta, idEvento: number) {
+        try {
+            const categoria = CategoriaController.getById(idCategoria);
+            if (categoria != null) {
+                const evento = categoria.eventos.find(e => e.id === idEvento);
+                if (evento == undefined) {
+                    throw new Error("No existe dicho evento");
+                }
+                if (!evento.agregarParticipante(participante)) {
+                    throw new Error("No se pudo agregar al equipo")
+                }
+            }
+            return true;
+        } catch (error) {
+            console.log(error)
+            return false;
+
+        }
+    }
+
+    static quitarParticipante(participante: Participante, idEvento: number, idCategoria: number) {
+        try {
+            const categoria = CategoriaController.getById(idCategoria);
+            if(categoria == null){
+                throw new Error("No existe la categoría")
+            }
+
+            const evento = categoria.eventos.find(evento => evento.id === idEvento);
+            if (evento == undefined) {
+                throw new Error("No existe dicho evento");
+            }
+
+            if (!evento.quitarParticipante(participante)) {
+                throw new Error("No se pudo quitar el equipo, no existe")
+            }
+
+            return true;
+        } catch (error) {
+            console.log(error)
+            return false;
+
+        }
     }
 }
 
