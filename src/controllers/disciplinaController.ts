@@ -32,11 +32,7 @@ class DisciplinaController {
     static add(nombre: string, id: number): Disciplina | null {
         const disciplina: Disciplina | undefined = DisciplinaController.getById(id);
         if (disciplina == null) {
-            const disciplinaNueva: Disciplina = {
-                nombre: nombre,
-                id: id,
-                categorias: []
-            };
+            const disciplinaNueva: Disciplina = new Disciplina( nombre, id);
             DISCIPLINAS.push(disciplinaNueva);
             return disciplinaNueva;
         }
