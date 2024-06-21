@@ -26,19 +26,19 @@ class AtletaController {
     static add(id: string, fechaNacimiento: Date, sexo: string, nacionalidad: string): Atleta | null {
         const usuario: Usuario | undefined = UsuarioController.getById(id);
         if (usuario != null) {
-            const atleta: Atleta = {
-                id: id,
-                nombre: usuario.nombre,
-                apellido: usuario.apellido,
-                email: usuario.email,
-                telefono: usuario.telefono,
-                contraseña: usuario.contraseña,
-                fechaNacimiento: fechaNacimiento,
-                sexo: sexo,
+            const atleta: Atleta = new Atleta(
+                id,
+                usuario.nombre,
+                usuario.apellido,
+                usuario.email,
+                usuario.telefono,
+                usuario.contraseña,
+                fechaNacimiento,
+                sexo,
                 nacionalidad,
-                equipos: [],
-                sanciones: []
-            };
+                [],
+                []
+            );
             ATLETAS.push(atleta);
             return atleta;
         }

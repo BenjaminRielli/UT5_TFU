@@ -2,6 +2,8 @@ import { Resultado } from "../models/resultado";
 import { ResultadoAtletismo } from "../models/resultadoAtletismo";
 import { Puntaje } from "../models/puntaje";
 import CategoriaController from "./categoriaController";
+import { DISCIPLINAS } from "../models/disciplina";
+import DisciplinaController from "./disciplinaController";
 
 class EventoController {
 
@@ -16,7 +18,12 @@ class EventoController {
             }
 
 
-            const categoria = CategoriaController.getById(idCategoria)
+            const disciplina = DisciplinaController.getById(idDisciplina);
+            if (disciplina == undefined) {
+                throw new Error("No existe la disciplina")
+            }
+            
+            const categoria = disciplina.categorias.find((c) => c.id == idCategoria)
             if (categoria == undefined) {
                 throw new Error("No existe la categoría")
             }
