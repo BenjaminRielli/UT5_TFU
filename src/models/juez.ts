@@ -8,5 +8,3 @@ export class Juez extends Usuario {
         this.nacionalidad = nacionalidad;
     }
 }
-
-export const JUECES: Juez[] = [];

@@ -13,5 +13,3 @@ export class Categoria {
         this.eventos = [];
     }
 }
-
-export const CATEGORIAS: Categoria[] = [];

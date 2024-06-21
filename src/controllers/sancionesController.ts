@@ -1,6 +1,8 @@
 import { Sancion } from "../models/sanciones";
-import { Atleta, ATLETAS } from "../models/atleta";
-import { Equipo, EQUIPOS } from "../models/equipo";
+import { Atleta } from "../models/atleta";
+import { ATLETAS } from "../models/database";
+import { Equipo } from "../models/equipo";
+import { EQUIPOS } from "../models/database";
 import AtletaController from "./atletaController";
 
 

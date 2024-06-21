@@ -1,6 +1,9 @@
-import { Atleta, ATLETAS } from "../models/atleta";
-import { Juez, JUECES } from "../models/juez";
-import { Usuario, USUARIOS } from "../models/usuario";
+import { Atleta } from "../models/atleta";
+import { ATLETAS } from "../models/database";
+import { Juez } from "../models/juez";
+import { JUECES } from "../models/database";
+import { Usuario } from "../models/usuario";
+import { USUARIOS } from "../models/database";
 import AtletaController from "./atletaController";
 import UsuarioController from "./usuarioController";
 

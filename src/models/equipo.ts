@@ -18,5 +18,3 @@ export class Equipo implements Participante {
         this.sanciones = sanciones;
     }
 }
-
-export const EQUIPOS: Equipo[] = [];

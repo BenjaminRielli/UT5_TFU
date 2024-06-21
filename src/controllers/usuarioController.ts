@@ -1,4 +1,5 @@
-import { Usuario, USUARIOS } from "../models/usuario";
+import { Usuario } from "../models/usuario";
+import { USUARIOS } from "../models/database";
 import AdministradorController from "./administradorController";
 import AtletaController from "./atletaController";
 import JuezController from "./juezController";

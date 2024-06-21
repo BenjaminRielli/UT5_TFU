@@ -22,5 +22,3 @@ export class Atleta extends Usuario implements Participante {
         this.sanciones = sanciones;
     }
 }
-
-export const ATLETAS: Atleta[] = [];

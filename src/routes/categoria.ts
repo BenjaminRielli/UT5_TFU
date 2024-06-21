@@ -7,8 +7,8 @@ import DisciplinaController from '../controllers/disciplinaController';
 import CategoriaController from '../controllers/categoriaController';
 
 import { Categoria } from '../models/categoria';
-import { Evento } from '../models/evento';
 import { Juez } from '../models/juez';
+import { Evento } from '../models/evento';
 
 
 const router = express.Router();

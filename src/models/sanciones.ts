@@ -13,5 +13,3 @@ export class Sancion {
         this.fechaFin = fechaFin;
     }
 }
-
-export const SANCIONES: Sancion[] = [];
